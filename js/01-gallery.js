@@ -5,8 +5,6 @@ console.log(galleryItems);
  const galleryListEl = document.querySelector('.gallery');
  console.log(galleryListEl);
 
- console.log(createElemOfListMarkup(galleryItems));
-
  const listElemMarkup = createElemOfListMarkup(galleryItems);
 galleryListEl.insertAdjacentHTML("beforeend", listElemMarkup);
  
@@ -31,12 +29,9 @@ galleryListEl.addEventListener("click", onGalleryListClick);
      
  }
 
-function blockingBrowserActioms(event) {
-    event.preventDefault();
-}
 
 function onGalleryListClick(event) {
-    blockingBrowserActioms(event);
+    event.preventDefault();
 
     if (!event.target.classList.contains("gallery__image")) {
         return;
@@ -48,9 +43,15 @@ function onGalleryListClick(event) {
 
     instance.show();
 
-    galleryListEl.addEventListener("keydown", (event) => {
-        if (event.code === "Escape") {
-            instance.close();
-        }
-    })
+    galleryListEl.addEventListener("keydown", keybordCheck);
+    
 }
+
+function keybordCheck(event) {
+     if (event.code === "Escape") {
+         instance.close();
+         galleryListEl.removeEventListener("keydown", keybordCheck);
+
+    }
+}
+
