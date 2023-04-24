@@ -28,9 +28,8 @@ function createElemOfListMarkup(galleryItems) {
      
 }
 
-const galleryLightBox = new SimpleLightbox(`.gallery__link`, {
+new SimpleLightbox(`.gallery__link`, {
     captionsData: "alt",
     captionDelay: 250,
 });
 
-console.log(galleryLightBox);
